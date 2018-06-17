@@ -15,7 +15,7 @@ func worker(input chan string) {
 }
 
 func main() {
-	messages := make(chan string)
+	messages := make(chan string,2)
 
 	go worker(messages)
 

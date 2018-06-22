@@ -15,11 +15,12 @@ func alpahbet(done chan bool) {
 	done <- true
 }
 
-func numbers() {
+func numbers(done chan bool) {
 	for number := 1; number < 27; number++ {
 		fmt.Printf("%d ", number)
 		time.Sleep(1*time.Millisecond)
 	}
+	done <- true
 }
 
 func main() {
@@ -28,8 +29,9 @@ func main() {
 
 	go alpahbet(done)
 
-	numbers()
+	go numbers(done)
 
+	<-done
 	<-done
 	fmt.Printf("\nDone")
 }

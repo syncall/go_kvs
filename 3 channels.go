@@ -8,14 +8,14 @@ import (
 
 func worker(input chan string) {
 	for {
-		time.Sleep(100*time.Millisecond)
+		time.Sleep(1*time.Second)
 		msg := <-input
 		fmt.Println("Processing: ", msg)
 	}
 }
 
 func main() {
-	messages := make(chan string)
+	messages := make(chan string, 2)
 
 	go worker(messages)
 
